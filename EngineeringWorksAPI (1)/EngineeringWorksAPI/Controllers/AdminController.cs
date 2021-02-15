@@ -37,7 +37,7 @@ namespace EngineeringWorksAPI.Controllers
         [HttpGet("Admin/Add")]
         public IActionResult Add(string id, string username, string name, string email, string password, string cnic, string mobile, string address)
         {
-            string insertQuery = @"INSERT INTO Admin VALUES ('" + id + "','" + username +"','" + name +"','" + email +"','" + password + "','" + cnic + "','" + mobile + "','" + address + "')";
+            string insertQuery = @"INSERT INTO Admin VALUES ('" + username +"','" + name +"','" + email +"','" + password + "','" + cnic + "','" + mobile + "','" + address + "')";
 
             Database.Connect();
             int count = Database.ExecuteNonQuery(insertQuery);

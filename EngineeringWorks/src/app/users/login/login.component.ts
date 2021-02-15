@@ -29,13 +29,13 @@ onLogin(loginForm: NgForm) {
 
   const token = this.authService.authUser(loginForm.value);
   if (token) {
-    localStorage.setItem('token', token.userName);
+    localStorage.setItem('token', token.username);
     console.log(token.userName);
 
 
     this.alertyfy.success('Login successful');
 
-    if (token.userName === "admin")
+    if (token.username === "admin")
 {
   this.router.navigate(['/admin']);
 }

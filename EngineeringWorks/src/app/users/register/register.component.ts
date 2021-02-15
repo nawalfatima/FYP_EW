@@ -25,7 +25,8 @@ export class RegisterComponent implements OnInit {
 
   createRegistrationForm() {
     this.registrationForm = this.fb.group({
-      userName: [null, Validators.required],
+      name: [null, Validators.required],
+      username: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(8)]],
       confirmPassword: [null, [Validators.required, Validators.minLength(8)]],
@@ -41,10 +42,12 @@ export class RegisterComponent implements OnInit {
 
 
 // getter functions
+get name(){
+  return this.registrationForm.get('name')as FormControl;
+}
 
-
-get userName(){
-  return this.registrationForm.get('userName')as FormControl;
+get username(){
+  return this.registrationForm.get('username')as FormControl;
 }
 get email(){
   return this.registrationForm.get('email')as FormControl;
@@ -84,12 +87,13 @@ get address(){
 
     userData() : User {
       return this.user = {
-         userName : this.userName.value,
+        name: this.name.value,
+         username : this.username.value,
          password : this.password.value,
-         Email: this.email.value,
-         Mobile: this.mobile.value,
-         Cnic: this.cnic.value,
-         Address: this.address.value
+         email: this.email.value,
+         mobile: this.mobile.value,
+         cnic: this.cnic.value,
+         address: this.address.value
     }
 
     }

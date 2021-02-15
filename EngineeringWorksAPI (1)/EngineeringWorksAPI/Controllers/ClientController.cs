@@ -35,9 +35,9 @@ namespace EngineeringWorksAPI.Controllers
         }
 
         [HttpGet("Client/Add")]
-        public IActionResult Add(string id, string username, string name, string email, string password, string cnic, string mobile, string address)
+        public IActionResult Add(string username, string name, string email, string password, string cnic, string mobile, string address)
         {
-            string insertQuery = @"INSERT INTO Client VALUES ('" + id + "','" + username + "','" + name + "','" + email + "','" + password + "','" + cnic + "','" + mobile + "','" + address + "')";
+            string insertQuery = @"INSERT INTO Client VALUES ('" + username + "','" + name + "','" + email + "','" + password + "','" + cnic + "','" + mobile + "','" + address + "')";
 
             Database.Connect();
             int count = Database.ExecuteNonQuery(insertQuery);

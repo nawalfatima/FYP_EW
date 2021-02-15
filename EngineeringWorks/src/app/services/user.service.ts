@@ -23,6 +23,7 @@ addUser(user : User){
     users = [user, ...users];
   }else {users = [user];}
   localStorage.setItem('Users', JSON.stringify(users));
+  //storing object in local storage
 
 }
 
