@@ -1,0 +1,44 @@
+
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+  <h3 class="w3-bar-item">Menu</h3>
+  <a  [routerLink]="['./manage-orders']"
+      class="w3-bar-item w3-button">
+          <h3>Manage Orders </h3>
+        </a>
+  <a  [routerLink]="['./manage-clients']"
+       class="w3-bar-item w3-button">
+            <h3>Manage Clients </h3>
+          </a>
+  <a  [routerLink]="['./manage-employees']"
+          class="w3-bar-item w3-button">
+               <h3>Manage Employees </h3>
+             </a>
+  <a  [routerLink]="['./manage-equipment']"
+             class="w3-bar-item w3-button">
+                  <h3>Manage Equipment </h3>
+                </a>
+ <a  [routerLink]="['./manage-projects']"
+                class="w3-bar-item w3-button">
+                     <h3>Manage Projects </h3>
+                   </a>
+  <a  [routerLink]="['./manage-services']"
+                   class="w3-bar-item w3-button">
+                        <h3>Manage Services </h3>
+                      </a>
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+
+<div class="w3-container w3-teal">
+  <h1>Admin Dashboard</h1>
+</div>
+
+<img src="assets/images/img3.jpg" alt="img" style="width:100%">
+
+
+
+</div>
+<router-outlet></router-outlet>
+
+

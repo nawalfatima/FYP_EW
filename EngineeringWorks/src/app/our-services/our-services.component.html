@@ -1,0 +1,15 @@
+<h1>List of Services We Provide</h1>
+   <div *ngFor=  "let service of services">
+    <h3>
+      {{service.name}}
+</h3>
+
+
+    <div class="container" [class.show]="service.visible">
+
+   <p>{{service.description}}</p>
+  </div>
+  <span></span>
+ <a class="show-opts" (click)="service.visible = !service.visible">
+    {{ service.visible ? 'Show less': 'Show More' }}</a>
+</div>

@@ -1,0 +1,9 @@
+<div class= "card">
+  <img class= "card-img-top" class= "projImg" src="/assets/images/{{project.name}}.jpg" alt="card image">
+    <div class= "card-body">
+
+      <h5 class="card-title"> {{project.name}}</h5>
+      <p class="card-text">{{project.detail}}</p>
+      <!-- <p class="card-text">Status: {{project.status}}</p> -->
+      <button class= "btn btn-Primary btn-dark"  routerLink="/project-detail/{{project.id}}"> View Details </button>
+    </div>

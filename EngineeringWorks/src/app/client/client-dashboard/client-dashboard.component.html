@@ -1,0 +1,45 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <nav class="nav flex-column">
+        <a class="nav-link active" [routerLink]="['./place-order']">Place Order</a>
+        <a class="nav-link" [routerLink]="['./view-order']">View Order</a>
+
+      </nav>
+    </div>
+    <div class="col-lg">
+Welcome Client!
+    </div>
+
+  </div>
+</div> -->
+
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+  <h3 class="w3-bar-item">Menu</h3>
+  <a  [routerLink]="['./place-order']"
+      class="w3-bar-item w3-button">
+          <h3>New Order </h3>
+        </a>
+  <a  [routerLink]="['./view-order']"
+       class="w3-bar-item w3-button">
+            <h3>View Your Orders </h3>
+          </a>
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+
+<div class="w3-container w3-teal">
+  <h1>Client Dashboard</h1>
+</div>
+
+<img src="assets/images/img3.jpg" alt="img" style="width:100%">
+
+
+
+</div>
+
+
+<router-outlet></router-outlet>

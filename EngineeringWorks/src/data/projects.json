@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Hospital",
+    "detail": "we built this hospital",
+    "status": 1
+
+  },
+
+  {
+    "id":2,
+    "name": "Mall",
+    "detail": "we built this mall",
+    "status": 1
+
+  },
+
+  {
+    "id":3,
+    "name": "Bridge",
+    "detail": "we built this bridge",
+    "status": 0
+
+  },
+
+  {
+    "id": 4,
+    "name": "Highway",
+    "detail": "Our highway project",
+    "status": 1
+  },
+  {
+    "id": 5,
+    "name": "Offices",
+    "detail": "We have made this beautiful work place for or customers",
+    "status": 1
+  }
+]
