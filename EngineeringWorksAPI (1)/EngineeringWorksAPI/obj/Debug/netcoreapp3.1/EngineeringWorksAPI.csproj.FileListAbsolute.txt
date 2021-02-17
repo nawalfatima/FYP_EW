@@ -78,3 +78,4 @@ C:\Users\Nawal\FYPCode\Engineering\EngineeringWorksAPI (1)\EngineeringWorksAPI\o
 C:\Users\Nawal\FYPCode\Engineering\EngineeringWorksAPI (1)\EngineeringWorksAPI\obj\Debug\netcoreapp3.1\EngineeringWorksAPI.dll
 C:\Users\Nawal\FYPCode\Engineering\EngineeringWorksAPI (1)\EngineeringWorksAPI\obj\Debug\netcoreapp3.1\EngineeringWorksAPI.pdb
 C:\Users\Nawal\FYPCode\Engineering\EngineeringWorksAPI (1)\EngineeringWorksAPI\obj\Debug\netcoreapp3.1\EngineeringWorksAPI.genruntimeconfig.cache
+C:\Users\Nawal\FYPCode\Engineering\EngineeringWorksAPI (1)\EngineeringWorksAPI\obj\Debug\netcoreapp3.1\EngineeringWorksAPI.csprojAssemblyReference.cache

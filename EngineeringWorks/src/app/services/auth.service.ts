@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ExtUser } from '../model/ext-user';
-import {HttpHeaders} from '@angular/common/http'
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +10,12 @@ export class AuthService {
 
 constructor( private http: HttpClient) { }
 
-getAllUsers():Observable<ExtUser[]>{
-    return this.http.get<ExtUser[]>('https://localhost:44382/admin/get')
+getAllAdmins():Observable<User[]>{
+    return this.http.get<User[]>('https://localhost:48500/api/Admins')
   }
-
+getAllClients():Observable<User[]>{
+  return this.http.get<User[]>('https://localhost:48500/api/Clients')
+}
 
 
 authUser( user : any ){

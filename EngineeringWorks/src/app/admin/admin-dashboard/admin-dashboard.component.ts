@@ -1,4 +1,3 @@
-import { ExtUser } from './../../model/ext-user';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,17 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  private admins : ExtUser[] = [];
   constructor(private userService : UserService,) { }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe((admin: ExtUser[])=>{
 
-      this.admins = admin;
-
-      console.log(this.admins)
-
-    });
 
   }
 

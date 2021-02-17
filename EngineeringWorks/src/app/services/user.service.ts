@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ExtUser } from '../model/ext-user';
 import { User } from '../model/user';
 
 @Injectable({
@@ -11,20 +10,26 @@ export class UserService {
 
 constructor(private http: HttpClient) { }
 
-getAllUsers():Observable<ExtUser[]>{
-  return this.http.get<ExtUser[]>('https://localhost:44382/admin/get')
-}
+regData: User = new User();
+readonly baseUrl = "http://localhost:48500/api/Clients";
 
-addUser(user : User){
-  let users =[];
+register(){
 
-  if(localStorage.getItem('Users')){
-    users= JSON.parse(localStorage.getItem('Users')!);
-    users = [user, ...users];
-  }else {users = [user];}
-  localStorage.setItem('Users', JSON.stringify(users));
-  //storing object in local storage
+return this.http.post(this.baseUrl, this.regData);}
 
-}
+
+
+
+// addUser(user : User){
+//   let users =[];
+
+//   if(localStorage.getItem('Users')){
+//     users= JSON.parse(localStorage.getItem('Users')!);
+//     users = [user, ...users];
+//   }else {users = [user];}
+//   localStorage.setItem('Users', JSON.stringify(users));
+//   //storing object in local storage
+
+// }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -70,10 +70,21 @@ get address(){
 
 
   onSubmit(){
+
+    this.userService.regData = this.userData();
+    this.userService.register().subscribe(
+      res=> {
+
+      },
+      err => {console.log(err);}
+
+      );
+
     console.log(this.registrationForm.value);
     this.userSubmitted= true;
     if(this.registrationForm.valid){
-      this.userService.addUser(this.userData());
+      // this.userService.addUser(this.userData());
+    //   this.userService.regData= this.userData();
       this.registrationForm.reset();
       this.userSubmitted= false;
       this.alertify.success(' Congrats! You have become our Registered Client. Login to continue.. ')
@@ -87,6 +98,7 @@ get address(){
 
     userData() : User {
       return this.user = {
+        id: 0,
         name: this.name.value,
          username : this.username.value,
          password : this.password.value,
