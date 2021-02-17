@@ -11,22 +11,33 @@ export class AuthService {
 constructor( private http: HttpClient) { }
 
 getAllAdmins():Observable<User[]>{
-    return this.http.get<User[]>('https://localhost:48500/api/Admins')
+    return this.http.get<User[]>('http://localhost:48500/api/Admins')
   }
 getAllClients():Observable<User[]>{
-  return this.http.get<User[]>('https://localhost:48500/api/Clients')
+  return this.http.get<User[]>('http://localhost:48500/api/Clients')
 }
+public UserArray =[];
 
 
 authUser( user : any ){
-  let UserArray = [];
-  if(localStorage.getItem('Users')){
-
-    UserArray = JSON.parse(localStorage.getItem('Users'));
-
-    return UserArray.find((u: { username: any; password: any; })=> u.username == user.username && u.password == user.password);
+  if (user.username === "admin"){
+    this.getAllAdmins().subscribe(res=> {
+      this.UserArray = res;
+    });
   }
+  else{
+    this.getAllClients().subscribe(res=> {
+      this.UserArray = res;
+    });
+    }
 
-  }
 
+
+
+let x= this.UserArray.find((u: { username: any; password: any; })=> u.username == user.username && u.password == user.password);
+return x;
 }
+
+  }
+
+// }

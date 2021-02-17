@@ -30,7 +30,7 @@ onLogin(loginForm: NgForm) {
   const token = this.authService.authUser(loginForm.value);
   if (token) {
     localStorage.setItem('token', token.username);
-    console.log(token.userName);
+    console.log(token.username);
 
 
     this.alertyfy.success('Login successful');
