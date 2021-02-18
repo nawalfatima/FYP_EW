@@ -62,13 +62,29 @@
         </div>
 
         <div class="form-group col-12">
-          <label for="mobile" class="form-label">Mobile</label>
+          <label for="mobile" class="form-label">Mobile Number</label>
           <input type="text" class="form-control" formControlName="mobile">
+          <span *ngIf= "!mobile.valid && (mobile.touched  || userSubmitted)" class= "error-block" >
+            <span *ngIf= "mobile.errors['required']" >
+              Please provide mobile number
+            </span>
+          <span *ngIf= "mobile.errors.minlength || mobile.errors.maxlength" >
+            please enter valid mobile number. min 11 digit max 12 digit
+          </span>
+          </span>
         </div>
 
         <div class="form-group col-12">
           <label for="cnic" class="form-label">CNIC</label>
           <input type="text" class="form-control"formControlName="cnic">
+          <span *ngIf= "!cnic.valid && (cnic.touched  || userSubmitted)" class= "error-block" >
+            <span *ngIf= "cnic.errors['required']" >
+              Please provide cnic
+            </span>
+          <span *ngIf= "cnic.errors.minlength || cnic.errors.maxlength" >
+            please enter valid cnic 13 digit
+          </span>
+          </span>
         </div>
 
         <div class="form-group col-12">
