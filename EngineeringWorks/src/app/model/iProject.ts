@@ -6,4 +6,6 @@ export interface IProject {
   status: number,
   startDate: string,
   finishDate:string,
+  image? : string,
+  video? : string
 }

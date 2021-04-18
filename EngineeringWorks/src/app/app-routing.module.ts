@@ -1,14 +1,14 @@
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { OurServicesComponent } from './our-services/our-services.component';
 import { AddProjectComponent } from './projects/add-project/add-project.component';
 import { HomeComponent } from './home/home.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { OurServicesListComponent } from './our-services/our-services-list/our-services-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -16,9 +16,10 @@ const routes: Routes = [
   { path: "register" , component: RegisterComponent},
   {path: "home", component: HomeComponent},
   { path:"project", component: ProjectListComponent},
-  { path:"services", component: OurServicesComponent},
+  { path:"services", component: OurServicesListComponent},
   {path: "contact", component: ContactUsComponent},
   {path: "about", component: AboutUsComponent},
+
 
 
 

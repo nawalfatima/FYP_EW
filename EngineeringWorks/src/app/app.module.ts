@@ -22,10 +22,18 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OurServicesComponent } from './our-services/our-services.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { OrderListComponent } from './order/order-list/order-list.component';
+import { OrderDetailsComponent } from './order/order-details/order-details.component';
+import { OurServicesListComponent } from './our-services/our-services-list/our-services-list.component';
+import { OurServicesDetailsComponent } from './our-services/our-services-details/our-services-details.component';
+import { EquipmentListComponent } from './equipment/equipment-list/equipment-list.component';
+import { EquipmentDetailsComponent } from './equipment/equipment-details/equipment-details.component';
+import { StaffListComponent } from './staff/staff-list/staff-list.component';
+import { StaffDetailsComponent } from './staff/staff-details/staff-details.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +46,17 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ProjectDetailsComponent,
     ProjectCardComponent,
     ProjectListComponent,
-    OurServicesComponent,
     AboutUsComponent,
-    ContactUsComponent
-  ],
+    ContactUsComponent,
+      OrderListComponent,
+      OrderDetailsComponent,
+      OurServicesListComponent,
+      OurServicesDetailsComponent,
+      EquipmentListComponent,
+      EquipmentDetailsComponent,
+      StaffListComponent,
+      StaffDetailsComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -53,7 +68,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     CarouselModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    PaginationModule.forRoot(),
 
 
 

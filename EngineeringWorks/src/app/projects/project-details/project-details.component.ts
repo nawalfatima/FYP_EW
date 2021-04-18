@@ -14,6 +14,7 @@ export class ProjectDetailsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    //plus operator returs numeric representation if the object
     this.projectId = +this.route.snapshot.params['id']
 
   }

@@ -1,1 +1,105 @@
-<p>add-project works!</p>
+
+
+<div class="row">
+  <div class="col-6 m-auto shadow-lg p-0 bg-white">
+  <div class="card">
+    <div class="card-header">
+        Add Project</div>
+
+
+    <div class="card-body">
+      <form [formGroup] = "addProjectForm" (ngSubmit)= "onSubmit()">
+        <div class="tab-panel">
+          <tabset class="member-tabset" #formTabs>
+            <tab heading="Basic Info">
+          <div class="form-group col-12">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name">
+            <span *ngIf= "!name.valid && name.touched" class= "error-block" >
+              Please provide name
+            </span>
+          </div>
+
+        <div class="form-group col-12">
+          <label for="orderId" class="form-label">OrderID</label>
+          <input type="text" class="form-control" formControlName="orderId">
+
+        </div>
+
+        <div class="form-group col-12">
+          <label for="details" class="form-label">Details</label>
+          <input type="details" class="form-control" formControlName="details">
+
+
+        </div>
+
+        <div class="form-group col-12">
+          <label for="status" class="form-label">Project Status</label>
+          <input type="status" class="form-control" formControlName="status">
+        </div>
+
+
+
+        <div class="form-group col-12">
+          <label for="startDate" class="form-label">Start Date</label>
+          <input type="text" class="form-control" formControlName="startDate">
+        </div>
+
+        <div class="form-group col-12">
+          <label for="finishDate" class="form-label">Start Date</label>
+          <input type="text" class="form-control" formControlName="finishDate">
+          <span class = "error-block" *ngIf= "startDate > finishDate"></span>
+        </div>
+
+        <div class="form-group col-12">
+          <button type="button"
+          class="btn btn-primary btn-block"
+          (click)="selectTab(1)">Next</button>
+      </div>
+
+      </tab>
+
+      <tab heading="Images">
+        <div class="form-group col-12">
+          <div class="photo-control">
+              <button class="mt-5" type="button">Upload</button> <br>
+              This is under construction
+          </div>
+        </div>
+
+        <div class="form-group col-12">
+          <button type="button"
+          class="btn btn-primary btn-block"
+          (click)="selectTab(2)">Next</button>
+
+        <button type="button"
+        class="btn btn-primary btn-block"
+        (click)="selectTab(0)">Back</button>
+    </div>
+
+      </tab>
+
+      <tab heading="Video">
+        <div class="form-group col-12">
+          <video width="320" height="240" controls>
+            <!-- <source src="movie.mp4" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg"> -->
+          </video>
+        </div>
+        <div class="form-group col-12">
+          <button type="button"
+          class="btn btn-primary btn-block"
+          (click)="selectTab(1)">Back</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="reset" class="btn btn-secondary ml-2">Cancel</button>
+        </div>
+                </tab>
+
+      </tabset>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+
