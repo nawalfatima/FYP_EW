@@ -32,7 +32,7 @@ this.createAddProjectForm();
   createAddProjectForm() {
     this.addProjectForm = this.fb.group({
       name: [null, [Validators.required, Validators.minLength(5)]],
-      orderId: [null, [Validators.required, Validators.email]],
+      orderId: [null, [Validators.required]],
       details: [null, [Validators.required]],
       status: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
@@ -95,7 +95,8 @@ this.createAddProjectForm();
       console.log(this.addProjectForm);
 
     }
-    console.log("congrats, form submitted");
-    console.log(this.addProjectForm);
+    else {
+      this.alertify.error('Please review the form and provide all valid entries');
+    }
   }
 }

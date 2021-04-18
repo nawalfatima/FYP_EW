@@ -1,7 +1,7 @@
 export interface IProject {
   id: number,
   name: string,
-  orderId: string,
+  orderId: number,
   detail: string,
   status: number,
   startDate: string,
