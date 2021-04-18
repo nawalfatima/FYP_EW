@@ -1,3 +1,4 @@
+import { Project } from './../model/Project';
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -28,12 +29,9 @@ export class ProjectService {
 
           }
           };
-          return projectArray;
-        }
+          return projectArray;}))}
 
-
-       )
-    )
-
-  }
+  addProject(project: Project) {
+            localStorage.setItem('newProj', JSON.stringify(project));
+          }
 }

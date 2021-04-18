@@ -7,5 +7,6 @@ export interface IProject {
   startDate: string,
   finishDate:string,
   image? : string,
-  video? : string
+  video? : string,
+  show : number
 }
