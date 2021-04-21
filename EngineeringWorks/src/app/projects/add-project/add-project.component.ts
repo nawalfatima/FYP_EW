@@ -67,6 +67,7 @@ this.createAddProjectForm();
 
 
     mapProject(): void {
+      this.project.id=6;
       this.project.name = this.name.value;
       this.project.orderId = this.orderId.value;
       this.project.status = this.status.value;

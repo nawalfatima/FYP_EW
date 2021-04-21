@@ -1,9 +1,31 @@
-<p>project-details works!</p>
-<p> selected project id is {{projectId}}</p>
- <button (click) = "onBack()" class = "btn btn-primary btn-dark"> Back </button>
- <Br/> <Br/>
- <button (click) = "onSelectPrevious()" class = "btn btn-primary btn-dark"> Select Previous </button>
-<span></span>
- <button (click) = "onSelectNext()" class = "btn btn-primary btn-dark"> Select Next </button>
+<div class="row shadow">
+  <div class="col-sm-3 p-0">
+    <div class="card">
+      <div class="card-img-wrapper">
+        <img class= "card-img-top" class= "projImg" src="/assets/images/{{project.name}}.jpg" alt="card image">
 
+      </div>
+      <div class = "card-body"> <h1>
+        {{project.name}}
+      </h1>
+    </div>
+    <div class= "card-footer">
+      <button (click) = "onSelectPrevious()" class = "btn btn-primary btn-dark btn-block"> Select Previous </button>
+      <Br/>
+       <button (click) = "onSelectNext()" class = "btn btn-primary btn-dark btn-block"> Select Next </button>
+       <Br/>
+       <button (click) = "onBack()" class = "btn btn-primary btn-dark btn-block"> Back </button>
+    </div>
+      </div>
+      </div>
+      <div class="col-sm-8 p-3">
+
+
+<br>
+
+<p>{{project.detail}}</p>
+
+
+
+      </div>
 

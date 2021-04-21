@@ -11,12 +11,16 @@ export class ProjectListComponent implements OnInit {
   projects! : Array<IProject>;
 
 
-  constructor( private projectService: ProjectService ) {
+
+
+  constructor( private projectService: ProjectService,
+              ) {
     this.projects = [];
 
    }
 
   ngOnInit(): void {
+
     this.projectService.getAllProjects().subscribe(
 
       ( data: IProject[]) => {
