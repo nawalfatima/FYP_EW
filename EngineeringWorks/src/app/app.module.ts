@@ -56,6 +56,9 @@ import { StaffDetailsComponent } from './staff/staff-details/staff-details.compo
       EquipmentDetailsComponent,
       StaffListComponent,
       StaffDetailsComponent
+
+
+
    ],
   imports: [
     BrowserModule,
@@ -78,7 +81,7 @@ import { StaffDetailsComponent } from './staff/staff-details/staff-details.compo
     AlertifyService,
     ProjectService,
     AuthService,
-    UserService
+    UserService,
 
   ],
   bootstrap: [AppComponent]
