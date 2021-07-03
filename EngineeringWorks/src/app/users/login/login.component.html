@@ -16,11 +16,21 @@
             <label>Password</label>
             <input class="form-control" required type="password" ngModel name="password">
           </div>
+          <div>
+            <input id="admin" type="radio" value="1" name="role" ngModel name="role">
+            <label for="admin">Login as Admin</label>
+         </div>
+          <div>
+            <input id="client" type="radio" value="2" name="role" ngModel name="role">
+            <label for="client">Login as Client</label>
+         </div>
 
           <div class="form-group col-12">
             <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Login</button>
             <button type="reset" class="btn btn-secondary ml-2">Cancel</button>
           </div>
+
+
         </form>
       </div>
     </div>

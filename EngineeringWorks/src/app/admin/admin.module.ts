@@ -9,6 +9,9 @@ import { AdminManageServicesComponent } from './admin-manage-services/admin-mana
 import { AdminManageProjectsComponent } from './admin-manage-projects/admin-manage-projects.component';
 import { AdminManageOrdersComponent } from './admin-manage-orders/admin-manage-orders.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +20,14 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormlyModule.forChild({validationMessages: [
+      { name: 'required', message: 'This field is required' },
+    ]}),
+    FormlyBootstrapModule,
+    ReactiveFormsModule,
+    FormsModule,
+
 
   ]
 })

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/model/user';
+import { IRegisterReq } from 'src/app/model/IRegister';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +12,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   registrationForm! : FormGroup;
-  user : User;
+  user : IRegisterReq;
   userSubmitted: Boolean;
 
-  constructor(private fb: FormBuilder, private userService : UserService,
+  constructor(private fb: FormBuilder, private authService : AuthService,
     private alertify : AlertifyService,
     private router: Router) { }
 
@@ -71,34 +71,42 @@ get address(){
 
   onSubmit(){
 
-    this.userService.regData = this.userData();
-    this.userService.register().subscribe(
-      res=> {
+    // //this.authService.regData = this.userData();
+    // this.authService.registerClient(this.userData()).subscribe(
+    //   res=> {
 
-      },
-      err => {console.log(err);}
+    //   },
+    //   err => {console.log(err);}
 
-      );
+    //   );
 
-    console.log(this.registrationForm.value);
+    // console.log(this.registrationForm.value);
     this.userSubmitted= true;
     if(this.registrationForm.valid){
-      // this.userService.addUser(this.userData());
-    //   this.userService.regData= this.userData();
-      this.registrationForm.reset();
-      this.userSubmitted= false;
-      this.alertify.success(' Congrats! You have become our Registered Client. Login to continue.. ')
-      this.router.navigate(["/login"]);
+      this.authService.registerClient(this.userData()).subscribe(()=>{
+        this.onReset();
+        this.alertify.success(' Congrats! You have become our Registered Client. Login to continue. ');
+        this.router.navigate(["/login"]);
+
+      } ), error=> {
+        console.log(error);
+        this.alertify.error(error);
+
+      };
 
     }
   else{
     this.alertify.error(' Error! Please provide the required fields ')
 
-  }}
+  }};
+  onReset (){
+    this.userSubmitted= false;
+    this.registrationForm.reset();
+  }
 
-    userData() : User {
+    userData() : IRegisterReq {
       return this.user = {
-        id: 0,
+
         name: this.name.value,
          username : this.username.value,
          password : this.password.value,

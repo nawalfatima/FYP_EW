@@ -1,4 +1,3 @@
-import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor(private userService : UserService,) { }
+  constructor() { }
 
   ngOnInit(): void {
 

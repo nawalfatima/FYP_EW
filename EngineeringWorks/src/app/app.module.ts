@@ -1,5 +1,5 @@
+import { HttpErrorInterceptorService } from './services/httperror-interceptor.service';
 import { ProjectService } from 'src/app/services/project.service';
-import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { ClientModule } from './client/client.module';
 import { AdminModule } from './admin/admin.module';
@@ -20,7 +20,7 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
 import { ProjectCardComponent } from './projects/project-card/project-card.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -34,6 +34,8 @@ import { EquipmentListComponent } from './equipment/equipment-list/equipment-lis
 import { EquipmentDetailsComponent } from './equipment/equipment-details/equipment-details.component';
 import { StaffListComponent } from './staff/staff-list/staff-list.component';
 import { StaffDetailsComponent } from './staff/staff-details/staff-details.component';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 @NgModule({
   declarations: [
@@ -73,15 +75,26 @@ import { StaffDetailsComponent } from './staff/staff-details/staff-details.compo
     CarouselModule.forRoot(),
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
+    FormlyModule.forRoot({ extras: { lazyRender: true },
+      validationMessages: [
+        { name: 'required', message: 'This field is required' },
+      ] }
+      ),
+    FormlyBootstrapModule,
+
 
 
 
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
+      multi:true
+    },
     AlertifyService,
     ProjectService,
     AuthService,
-    UserService,
 
   ],
   bootstrap: [AppComponent]

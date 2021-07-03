@@ -1,9 +1,10 @@
-import { UserService } from './../../services/user.service';
+import { IloginRes } from './../../model/IloginReq';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { IloginReq } from 'src/app/model/IloginReq';
 
 @Component({
   selector: 'app-login',
@@ -16,40 +17,50 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
               private alertyfy: AlertifyService,
               private router: Router,
-              private userService: UserService
   ) { }
 
   ngOnInit(): void {
 
 }
 onLogin(loginForm: NgForm) {
-  console.log(loginForm.value);
+  //console.log(loginForm.value);
+
+  const myuser : IloginReq = {username : loginForm.value['username'],password : loginForm.value['password']} ;
+  // myuser.username = user.username;
+  // myuser.password= user.password;
+  if (loginForm.value['role'] === "1"){
+    return this.authService.loginAdmin( myuser)
+     .subscribe((res : IloginRes)=> {
+      console.log(res);
+      const user = res;
+      localStorage.setItem('token', user.token);
+      localStorage.setItem('userName', user.username);
+
+      this.alertyfy.success('Login successful');
+      this.router.navigate(['/admin']);
+    }
+  //   , error =>{
+  //     console.log(error);
+  //  //   this.alertyfy.error(error.error);
+  //   }
+    );
+   }
+   else{
+    return this.authService.loginClient(myuser)
+     .subscribe((res : IloginRes)=> {
+       console.log(res);
+       const user = res;
+       localStorage.setItem('token', user.token);
+       this.alertyfy.success('Login successful');
+       this.router.navigate(['/client']);
+}, error =>{
+  console.log(error);
+  this.alertyfy.error(error.error);}
+);
+     }
 
 
 
-  const token = this.authService.authUser(loginForm.value);
-  if (token) {
-    localStorage.setItem('token', token.username);
-    console.log(token.username);
-
-
-    this.alertyfy.success('Login successful');
-
-    if (token.username === "admin")
-{
-  this.router.navigate(['/admin']);
-}
-else
-{
-  this.router.navigate(['/client']);
-}
-
-
-  }
-  else{
-    this.alertyfy.error('User name or password is wrong')
-
-  }
 }}
 
 
