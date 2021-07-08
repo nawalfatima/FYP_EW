@@ -11,18 +11,41 @@ import { AdminManageOrdersComponent } from './admin-manage-orders/admin-manage-o
 import { HttpClientModule } from '@angular/common/http';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+export function minlengthValidationMessages(err, field) {
+  return `Should have atleast ${field.templateOptions.minLength} characters`;
+}
 
+export function dateComparisonValidator(control: AbstractControl) {
+  const { joiningDate:joiningDate , leavingDate : leavingDate}  = control.value;
+let newJD = new Date (joiningDate);
+let newLD =new Date (leavingDate);
+  // avoid displaying the message error when values are empty
+  if (newJD && !newLD) {
+    return null;
+  }
+
+  if (newJD < newLD) {
+    return null;
+  }
+
+  return { dateComparison: { message: 'leaving date is earlier than the joining date' } };
+}
 @NgModule({
   declarations: [AdminDashboardComponent, AdminManageClientsComponent, AdminManageEmployeesComponent, AdminManageEquipmentComponent, AdminManageServicesComponent, AdminManageProjectsComponent, AdminManageOrdersComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
-    FormlyModule.forChild({validationMessages: [
+    FormlyModule.forChild({
+      validators: [
+        { name: 'dateComparison', validation: dateComparisonValidator },
+      ],
+      validationMessages: [
       { name: 'required', message: 'This field is required' },
+      { name: 'minlength', message: minlengthValidationMessages },
     ]}),
     FormlyBootstrapModule,
     ReactiveFormsModule,

@@ -1,3 +1,4 @@
+import { KeyValue } from './../../model/KeyValue';
 import { IKeyValue } from './../../model/IKeyValue';
 import { ProjectService } from './../../services/project.service';
 import { Component, OnInit } from '@angular/core';
@@ -7,6 +8,8 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { SalaryType } from 'src/app/Enums/enums';
 import { IResponseSelect } from 'src/app/model/IResponse';
 import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IStaffEditableInfo } from 'src/app/model/IStaff';
 
 @Component({
   selector: 'app-admin-manage-employees',
@@ -14,31 +17,20 @@ import { of } from 'rxjs';
 //  styleUrls: ['./admin-manage-employees.component.css']
 })
 export class AdminManageEmployeesComponent implements OnInit {
-
-  // projRes : IResponseSelect;
-  // count : number;
-  // projList : IKeyValue[] ;
-
-//  observer :{label: string, value: number}[] = [] ;
-
+  form = new FormGroup({});
+  model: IStaffEditableInfo ;
+  options: FormlyFormOptions = {};
+  data: [KeyValue];
 
   constructor(private router : Router,
-    private projectService : ProjectService) { }
+    private projectService : ProjectService) {
 
-  ngOnInit(): void {
+     }
 
-     // console.log(this.projList);
-
-    //   for(let i =0; i<this.count; i++){
-    //     this.observer.push({
-    //       label: this.projList[i].name,
-    //       value : this.projList[i].id
-
-    //     })}
-    // console.log(this.observer);
 
 
 
+  ngOnInit(): void {
 
 
 
@@ -48,12 +40,16 @@ export class AdminManageEmployeesComponent implements OnInit {
 
 
 
-  form = new FormGroup({});
-  model: any = {};
-  options: FormlyFormOptions = {};
+
 
 
   fields: FormlyFieldConfig[] = [
+    // {
+    //   validators: {
+    //     validation: [
+    //       { name: 'dateComparison', options: { errorPath: 'leavingtDate' } },
+    //     ],
+    //   }},
 
     {
       key: 'fname',
@@ -130,21 +126,28 @@ export class AdminManageEmployeesComponent implements OnInit {
             },
               {
                 type: 'input',
-                key: 'joiningtDate',
+                key: 'joiningDate',
                 className: 'col-sm-4',
                 templateOptions: {
                   type: 'date',
                   label: 'Date of Joining:',
                   required: true
-                },},
+                },
+                validators: {
+                  validation: [
+                    { name: 'dateComparison', options: { errorPath: 'leavingDate' } },
+                  ],
+                }
+              },
                 {
                   type: 'input',
-                  key: 'leavingtDate',
+                  key: 'leavingDate',
                   className: 'col-sm-4',
                   templateOptions: {
                     type: 'date',
                     label: 'Date of Leaving:',
-                  },},
+                  },
+                },
                   {
                     className: 'section-label',
                     template: '<hr /><div><strong>Ptoject Based Roles:</strong></div>',
@@ -159,7 +162,15 @@ export class AdminManageEmployeesComponent implements OnInit {
                         templateOptions: {
                           label: 'Project',
 
-                          options: this.projectService.observergen() ,
+                          options: this.projectService.getAllProjectsSelect()
+                          // .pipe(
+                          //   map(data => {
+                          //      // transform/manipulate data and return the manipulated result
+                          //     return data;
+                          //   }
+                          //    )
+                          //    )
+                          ,
                           valueProp: 'id',
                           labelProp: 'name',
                           required: true,
@@ -169,26 +180,27 @@ export class AdminManageEmployeesComponent implements OnInit {
 
 
                       },},
-                      {
-                        className: 'col-3',
-                        type: 'input',
-                        key: 'cityName',
-                        templateOptions: {
-                          label: 'City',
-                        },
-                      },
-                      {
-                        className: 'col-3',
-                        type: 'input',
-                        key: 'zip',
-                        templateOptions: {
-                          type: 'number',
-                          label: 'Zip',
-                          max: 99999,
-                          min: 0,
-                          pattern: '\\d{5}',
-                        },
-                    },]} ,
+                    //   {
+                    //     className: 'col-3',
+                    //     type: 'input',
+                    //     key: 'cityName',
+                    //     templateOptions: {
+                    //       label: 'City',
+                    //     },
+                    //   },
+                    //   {
+                    //     className: 'col-3',
+                    //     type: 'input',
+                    //     key: 'zip',
+                    //     templateOptions: {
+                    //       type: 'number',
+                    //       label: 'Zip',
+                    //       max: 99999,
+                    //       min: 0,
+                    //       pattern: '\\d{5}',
+                    //     },
+                    // }
+                    ,]} ,
 
 
     {
@@ -203,6 +215,7 @@ export class AdminManageEmployeesComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
+      console.log(this.model)
       alert(JSON.stringify(this.model));
     }
   }
