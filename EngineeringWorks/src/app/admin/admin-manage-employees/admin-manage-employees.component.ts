@@ -1,3 +1,4 @@
+import { StaffEditableInfo } from './../../model/StaffEditableInfo';
 import { KeyValue } from './../../model/KeyValue';
 import { IKeyValue } from './../../model/IKeyValue';
 import { ProjectService } from './../../services/project.service';
@@ -5,10 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { SalaryType } from 'src/app/Enums/enums';
-import { IResponseSelect } from 'src/app/model/IResponse';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { SalaryType } from 'src/app/Enums/enums';;
 import { IStaffEditableInfo } from 'src/app/model/IStaff';
 
 @Component({
@@ -18,9 +16,8 @@ import { IStaffEditableInfo } from 'src/app/model/IStaff';
 })
 export class AdminManageEmployeesComponent implements OnInit {
   form = new FormGroup({});
-  model: IStaffEditableInfo ;
+  model: IStaffEditableInfo = new StaffEditableInfo ();
   options: FormlyFormOptions = {};
-  data: [KeyValue];
 
   constructor(private router : Router,
     private projectService : ProjectService) {
@@ -44,12 +41,7 @@ export class AdminManageEmployeesComponent implements OnInit {
 
 
   fields: FormlyFieldConfig[] = [
-    // {
-    //   validators: {
-    //     validation: [
-    //       { name: 'dateComparison', options: { errorPath: 'leavingtDate' } },
-    //     ],
-    //   }},
+
 
     {
       key: 'fname',
@@ -124,6 +116,14 @@ export class AdminManageEmployeesComponent implements OnInit {
                 ],
               },
             },
+
+            {
+              validators: {
+              validation: [
+                { name: 'dateComparison', options: { errorPath: 'leavingDate' } },
+                    ],
+                  },
+            fieldGroup:[
               {
                 type: 'input',
                 key: 'joiningDate',
@@ -133,11 +133,7 @@ export class AdminManageEmployeesComponent implements OnInit {
                   label: 'Date of Joining:',
                   required: true
                 },
-                validators: {
-                  validation: [
-                    { name: 'dateComparison', options: { errorPath: 'leavingDate' } },
-                  ],
-                }
+
               },
                 {
                   type: 'input',
@@ -147,29 +143,32 @@ export class AdminManageEmployeesComponent implements OnInit {
                     type: 'date',
                     label: 'Date of Leaving:',
                   },
-                },
+                }
+              ]},
                   {
                     className: 'section-label',
                     template: '<hr /><div><strong>Ptoject Based Roles:</strong></div>',
                   },
+
                   {
+
+                      key: 'Projects',
+                      type: 'repeat',
+                      templateOptions: {
+                        addText: 'Add another project',
+                      },
+                      fieldArray: {
                     fieldGroupClassName: 'row',
                     fieldGroup: [
                       {
                         className: 'col-6',
-                        key: 'project',
+                        key: 'project1',
                         type: 'select',
                         templateOptions: {
-                          label: 'Project',
+                          label: 'Project 1',
 
                           options: this.projectService.getAllProjectsSelect()
-                          // .pipe(
-                          //   map(data => {
-                          //      // transform/manipulate data and return the manipulated result
-                          //     return data;
-                          //   }
-                          //    )
-                          //    )
+
                           ,
                           valueProp: 'id',
                           labelProp: 'name',
@@ -180,14 +179,15 @@ export class AdminManageEmployeesComponent implements OnInit {
 
 
                       },},
-                    //   {
-                    //     className: 'col-3',
-                    //     type: 'input',
-                    //     key: 'cityName',
-                    //     templateOptions: {
-                    //       label: 'City',
-                    //     },
-                    //   },
+                      {
+                        className: 'col-6',
+                        type: 'input',
+                        key: 'Role1',
+                        templateOptions: {
+                          label: 'Role 1',
+                        },
+                      },
+
                     //   {
                     //     className: 'col-3',
                     //     type: 'input',
@@ -200,7 +200,9 @@ export class AdminManageEmployeesComponent implements OnInit {
                     //       pattern: '\\d{5}',
                     //     },
                     // }
-                    ,]} ,
+                      ,]
+                     }
+                    } ,
 
 
     {

@@ -22,7 +22,6 @@ export interface IStaffEditableInfo {
   staffLName : string,
   salaryAmt? : number,
   designation: string,
-  staffStatus: string,
   staffPhNo : string,
   staffAddress : string,
   staffEmail : string,

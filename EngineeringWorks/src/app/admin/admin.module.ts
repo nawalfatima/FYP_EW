@@ -20,12 +20,13 @@ export function minlengthValidationMessages(err, field) {
 
 export function dateComparisonValidator(control: AbstractControl) {
   const { joiningDate:joiningDate , leavingDate : leavingDate}  = control.value;
-let newJD = new Date (joiningDate);
-let newLD =new Date (leavingDate);
+
   // avoid displaying the message error when values are empty
-  if (newJD && !newLD) {
+  if (!joiningDate  || !leavingDate) {
     return null;
   }
+  let newJD = new Date (joiningDate);
+let newLD =new Date (leavingDate);
 
   if (newJD < newLD) {
     return null;
