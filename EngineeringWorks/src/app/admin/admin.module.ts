@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyModule } from '@ngx-formly/core';
 import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RepeatTypeComponent } from './repeat-section.type';
 
 
 export function minlengthValidationMessages(err, field) {
@@ -35,12 +36,15 @@ let newLD =new Date (leavingDate);
   return { dateComparison: { message: 'leaving date is earlier than the joining date' } };
 }
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminManageClientsComponent, AdminManageEmployeesComponent, AdminManageEquipmentComponent, AdminManageServicesComponent, AdminManageProjectsComponent, AdminManageOrdersComponent],
+  declarations: [AdminDashboardComponent, AdminManageClientsComponent, AdminManageEmployeesComponent, AdminManageEquipmentComponent, AdminManageServicesComponent, AdminManageProjectsComponent, AdminManageOrdersComponent,RepeatTypeComponent ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
     FormlyModule.forChild({
+      types: [
+        { name: 'repeat', component: RepeatTypeComponent },
+      ],
       validators: [
         { name: 'dateComparison', validation: dateComparisonValidator },
       ],

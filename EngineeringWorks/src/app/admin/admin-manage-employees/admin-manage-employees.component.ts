@@ -1,6 +1,4 @@
 import { StaffEditableInfo } from './../../model/StaffEditableInfo';
-import { KeyValue } from './../../model/KeyValue';
-import { IKeyValue } from './../../model/IKeyValue';
 import { ProjectService } from './../../services/project.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -16,7 +14,7 @@ import { IStaffEditableInfo } from 'src/app/model/IStaff';
 })
 export class AdminManageEmployeesComponent implements OnInit {
   form = new FormGroup({});
-  model: IStaffEditableInfo = new StaffEditableInfo ();
+  model: IStaffEditableInfo = new StaffEditableInfo();
   options: FormlyFormOptions = {};
 
   constructor(private router : Router,
@@ -44,7 +42,7 @@ export class AdminManageEmployeesComponent implements OnInit {
 
 
     {
-      key: 'fname',
+      key: 'staffFName',
       type: 'input',
       templateOptions: {
         label: 'First Name',
@@ -53,7 +51,7 @@ export class AdminManageEmployeesComponent implements OnInit {
       },
     },
     {
-      key: 'lname',
+      key: 'staffLName',
       type: 'input',
       templateOptions: {
         label: 'Last Name',
@@ -61,7 +59,7 @@ export class AdminManageEmployeesComponent implements OnInit {
 
       }},
       {
-        key: 'address',
+        key: 'staffAddress',
         type: 'input',
         templateOptions: {
           label: 'Address',
@@ -71,7 +69,7 @@ export class AdminManageEmployeesComponent implements OnInit {
         },
       },
       {
-        key: 'Email',
+        key: 'staffEmail',
         type: 'input',
         templateOptions: {
           label: 'Last Name',
@@ -80,7 +78,7 @@ export class AdminManageEmployeesComponent implements OnInit {
           required : true
         }},
         {
-          key: 'phNo',
+          key: 'staffPhNo',
           type: 'input',
           templateOptions: {
             label: 'Phone Number',
@@ -152,20 +150,20 @@ export class AdminManageEmployeesComponent implements OnInit {
 
                   {
 
-                      key: 'Projects',
+                      key: 'roles',
                       type: 'repeat',
                       templateOptions: {
-                        addText: 'Add another project',
+                        addText: 'Add a project role',
                       },
                       fieldArray: {
-                    fieldGroupClassName: 'row',
+           //         fieldGroupClassName: 'row',
                     fieldGroup: [
                       {
-                        className: 'col-6',
-                        key: 'project1',
+                   //     className: 'col-6',
+                        key: 'project',
                         type: 'select',
                         templateOptions: {
-                          label: 'Project 1',
+                          label: 'Project',
 
                           options: this.projectService.getAllProjectsSelect()
 
@@ -173,18 +171,14 @@ export class AdminManageEmployeesComponent implements OnInit {
                           valueProp: 'id',
                           labelProp: 'name',
                           required: true,
-
-
-
-
-
-                      },},
+                      },
+                    },
                       {
-                        className: 'col-6',
+                    //    className: 'col-6',
                         type: 'input',
-                        key: 'Role1',
+                        key: 'Role',
                         templateOptions: {
-                          label: 'Role 1',
+                          label: 'Role',
                         },
                       },
 
@@ -205,13 +199,13 @@ export class AdminManageEmployeesComponent implements OnInit {
                     } ,
 
 
-    {
-      key: 'text',
-      type: 'checkbox',
-      templateOptions: {
-        label: 'I agree',
-      },
-    }
+    // {
+    //   key: 'text',
+    //   type: 'checkbox',
+    //   templateOptions: {
+    //     label: 'I agree',
+    //   },
+    // }
   ];
 
 
