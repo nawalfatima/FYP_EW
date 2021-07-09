@@ -32,6 +32,4 @@ export class ProjectListComponent implements OnInit {
           }
     )
   }
-
-
 }

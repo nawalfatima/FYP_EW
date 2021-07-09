@@ -33,10 +33,19 @@ let newLD =new Date (leavingDate);
     return null;
   }
 
-  return { dateComparison: { message: 'leaving date is earlier than the joining date' } };
+  return { dateComparison: { message:
+    'leaving date is earlier than the joining date' } };
 }
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminManageClientsComponent, AdminManageEmployeesComponent, AdminManageEquipmentComponent, AdminManageServicesComponent, AdminManageProjectsComponent, AdminManageOrdersComponent,RepeatTypeComponent ],
+  declarations: [AdminDashboardComponent,
+     AdminManageClientsComponent,
+     AdminManageEmployeesComponent,
+      AdminManageEquipmentComponent,
+       AdminManageServicesComponent,
+        AdminManageProjectsComponent,
+         AdminManageOrdersComponent,
+         RepeatTypeComponent
+        ],
   imports: [
     CommonModule,
     AdminRoutingModule,
