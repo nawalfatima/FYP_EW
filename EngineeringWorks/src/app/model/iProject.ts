@@ -1,24 +1,47 @@
+import { Url } from "url";
+
 export interface IProject {
-  id: number,
-  name: string,
-  orderId: number,
-  detail: string,
-  status: number,
-  startDate: string,
-  finishDate:string,
-  image? : string,
+  projID: number,
+  projName: string,
+  orderID: number,
+  projDescription: string,
+  projStatus: number,
+  projStartDate: Date,
+  projDueDate:Date,
+  images? : string,
   video? : string,
-  show : number
+  show? : boolean,
+  site: string
 }
 export interface IAddProject {
-  name: string,
-  orderId: number,
-  detail: string,
-  status: number,
-  startDate: string,
-  finishDate:string,
-  image? : string,
+  projName: string,
+  orderID: number,
+  projDescription: string,
+  projStatus: number,
+  projStartDate: Date,
+  projDueDate:Date,
+  images? : string,
   video? : string,
-  show : number
+  show? : boolean,
+  site: string
 }
-
+export interface IShowProject {
+  projName: string,
+  projDescription: string,
+  projStatus: number,
+  images? : string,
+  video? : string,
+  site: string
+}
+export interface IProjectPaged {
+  pageNumber: number,
+  pageSize: number,
+  totalPages: number,
+  totalRecords: number,
+  firstPage: Url,
+  lastPage: Url,
+  nextPage: Url,
+  previousPage: Url,
+  data: IShowProject[],
+  succeeded: boolean
+}

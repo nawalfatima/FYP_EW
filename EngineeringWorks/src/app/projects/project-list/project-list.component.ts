@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IProject } from 'src/app/model/iProject';
+import { IProjectPaged, IShowProject } from 'src/app/model/iProject';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -8,8 +8,10 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./project-list.component.css']
 })
 export class ProjectListComponent implements OnInit {
-  projects! : Array<IProject>;
-
+  projects! : Array<IShowProject>;
+  totalItems : number;
+  itemsPerPage: number= 6;
+  page: number=1;
 
 
 
@@ -21,15 +23,16 @@ export class ProjectListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.projectService.getAllProjects().subscribe(
+    this.projectService.getShowProject(1, 10).subscribe(
 
-      ( data: IProject[]) => {
-        this.projects = data;
-        console.log ( data )
-      }, (error: any) => {
-        console.log("httperror :");
-          console.log(error)
-          }
+      ( res: IProjectPaged) => {
+        this.projects = res.data;
+        this.totalItems= res.totalRecords;
+        this.page= res.pageNumber;
+        console.log ( res.data )
+        this.page =  0
+      }
+
     )
   }
 }

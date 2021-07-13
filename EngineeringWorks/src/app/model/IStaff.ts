@@ -29,7 +29,7 @@ export interface IStaffEditableInfo {
   leavingDate: Date,
   salaryType : SalaryType,
 
-  roles: IRole[]
+  roles: IRole[] ;
 
 
   }

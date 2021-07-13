@@ -36,6 +36,7 @@ import { StaffListComponent } from './staff/staff-list/staff-list.component';
 import { StaffDetailsComponent } from './staff/staff-details/staff-details.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
     CarouselModule.forRoot(),
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
+    NgxPaginationModule,
     FormlyModule.forRoot({ extras: { lazyRender: true },
       validationMessages: [
         { name: 'required', message: 'This field is required' },

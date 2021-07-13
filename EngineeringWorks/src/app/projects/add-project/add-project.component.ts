@@ -37,7 +37,10 @@ this.createAddProjectForm();
       status: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       finishDate: [null, [Validators.required]],
-      show: [null, [Validators.required]]
+      show: [null, [Validators.required]],
+      site: [null, [Validators.required]],
+
+
     });}
 
     // getter functions
@@ -63,18 +66,22 @@ this.createAddProjectForm();
     get show(){
       return this.addProjectForm.get('show')as FormControl;
     }
+    get site(){
+      return this.addProjectForm.get('site')as FormControl;
+    }
 
 
 
     mapProject(): void {
-      this.project.id=0;
-      this.project.name = this.name.value;
-      this.project.orderId = this.orderId.value;
-      this.project.status = this.status.value;
-      this.project.detail = this.details.value;
-      this.project.startDate = this.startDate.value;
-      this.project.finishDate = this.finishDate.value;
+      this.project.projID=0;
+      this.project.projName = this.name.value;
+      this.project.orderID = this.orderId.value;
+      this.project.projStatus = this.status.value;
+      this.project.projDescription = this.details.value;
+      this.project.projStartDate = this.startDate.value;
+      this.project.projDueDate = this.finishDate.value;
       this.project.show = this.show.value;
+      this.project.site = this.site.value;
 
     }
 

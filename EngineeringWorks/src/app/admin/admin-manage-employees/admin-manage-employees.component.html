@@ -1,8 +1,14 @@
 <p>admin-manage-employees works!</p>
+<div class="form-group">
+  <div>
+    <button class="btn btn-sm btn-primary" (click)="toggleDisabled()">Toggle</button>
+  </div>
+</div>
 <form [formGroup]="form"  (ngSubmit)="submit()">
+
   <formly-form [model]="model" [fields]="fields"
   [options]="options" [form]="form"></formly-form>
   <button type="submit" class="btn btn-primary submit-button"
-  [disabled]="!form.valid">Submit</button>
+  [disabled]="!form.valid|| options.formState.disabled"  >Submit</button>
   <button type="button" class="btn btn-default" (click)="options.resetModel()">Reset</button>
 </form>

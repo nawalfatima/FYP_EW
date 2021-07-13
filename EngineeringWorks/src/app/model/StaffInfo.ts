@@ -1,11 +1,13 @@
-import { IRole, IStaffEditableInfo } from 'src/app/model/IStaff';
 import { SalaryType } from '../Enums/enums';
+import { IRole, IStaffInfo } from './IStaff';
 import { Role } from './Role';
-export class StaffEditableInfo implements IStaffEditableInfo {
+export class StaffInfo implements IStaffInfo {
+  staffID: number;
   staffFName: string;
   staffLName: string;
-  salaryAmt?: number;
+  salary?: number;
   designation: string;
+  staffStatus: string;
   staffPhNo: string;
   staffAddress: string;
   staffEmail: string;
@@ -13,5 +15,4 @@ export class StaffEditableInfo implements IStaffEditableInfo {
   leavingDate: Date;
   salaryType: SalaryType;
   roles: IRole[] = [new Role()];
-
 }
