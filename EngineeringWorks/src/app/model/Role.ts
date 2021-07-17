@@ -1,5 +1,5 @@
 import { IRole } from './IStaff';
 export class Role implements IRole{
-  roleName: string;
-  projectId: number;
+  role1: string;
+  projID: number;
 }

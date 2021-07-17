@@ -1,7 +1,7 @@
 <p>admin-manage-employees works!</p>
 <div class="form-group">
   <div>
-    <button class="btn btn-sm btn-primary" (click)="toggleDisabled()">Toggle</button>
+    <button class="btn btn-sm btn-primary" (click)="toggleDisabled()" [disabled]=" !options.formState.disabled">Edit</button>
   </div>
 </div>
 <form [formGroup]="form"  (ngSubmit)="submit()">

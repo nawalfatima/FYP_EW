@@ -1,10 +1,12 @@
-import { StaffInfo } from './../../model/StaffInfo';
-import { IStaffEditableInfo, IStaffInfo } from './../../model/IStaff';
+import { IStaffEditableInfo } from 'src/app/model/IStaff';
 import { StaffEditableInfo } from './../../model/StaffEditableInfo';
+import { StaffServiceService } from 'src/app/admin/admin-services/StaffService.service';
+import { StaffInfo } from './../../model/StaffInfo';
+import {  IStaffInfo} from './../../model/IStaff';
 import { ProjectService } from './../../services/project.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { SalaryType } from 'src/app/Enums/enums';;
 
@@ -14,6 +16,9 @@ import { SalaryType } from 'src/app/Enums/enums';;
 //  styleUrls: ['./admin-manage-employees.component.css']
 })
 export class AdminManageEmployeesComponent implements OnInit {
+  staffId: number;
+  staffData : IStaffInfo;
+  editRes : any;
   form = new FormGroup({});
   model : IStaffInfo = new StaffInfo();
   options: FormlyFormOptions = {
@@ -23,17 +28,37 @@ export class AdminManageEmployeesComponent implements OnInit {
   };
 
   constructor(private router : Router,
+    private route : ActivatedRoute,
     private projectService : ProjectService,
+    private staffService: StaffServiceService
     ) {
 
      }
 
-  ngOnInit(): void {    }
+  ngOnInit(): void {
+    this.staffId = +this.route.snapshot.params['id'];
+    this.route.params.subscribe(
+      (params) => {
+        this.staffId = +params['id'];
+        this.staffService.getStaffById(this.staffId).subscribe(
+          (data: IStaffInfo) => {
+
+            this.model = data;
+            this.model.roles = data.roles;
+            console.log(data);
+            console.log(this.model.roles)
+
+
+          }
+        );
+      }
+    )
+      }
 
   fields: FormlyFieldConfig[] = [
 
     {
-      key: 'staffFID',
+      key: 'staffID',
       type: 'input',
       templateOptions: {
 
@@ -42,7 +67,7 @@ export class AdminManageEmployeesComponent implements OnInit {
       },
     },
     {
-      key: 'staffFName',
+      key: 'staffFname',
       type: 'input',
       templateOptions: {
         label: 'First Name',
@@ -55,7 +80,7 @@ export class AdminManageEmployeesComponent implements OnInit {
       },
     },
     {
-      key: 'staffLName',
+      key: 'staffLname',
       type: 'input',
       templateOptions: {
         label: 'Last Name',
@@ -83,7 +108,7 @@ export class AdminManageEmployeesComponent implements OnInit {
         key: 'staffEmail',
         type: 'input',
         templateOptions: {
-          label: 'Last Name',
+          label: 'Email',
           type: 'email' ,
           placeholder : 'enter email',
           required : true
@@ -117,6 +142,21 @@ export class AdminManageEmployeesComponent implements OnInit {
               // apply expressionProperty for disabled based on formState
               'templateOptions.disabled': 'formState.disabled',
             },},
+
+            {
+              key: 'staffStatus',
+              type: 'input',
+              templateOptions: {
+
+                label: 'Staff Status',
+                required : true
+
+              },
+              expressionProperties: {
+                // apply expressionProperty for disabled based on formState
+                'templateOptions.disabled': 'formState.disabled',
+              }
+            },
             {
               key: 'salaryAmt',
               type: 'input',
@@ -129,17 +169,18 @@ export class AdminManageEmployeesComponent implements OnInit {
                 // apply expressionProperty for disabled based on formState
                 'templateOptions.disabled': 'formState.disabled',
               },},
-             { key: 'salaryType',
+
+             { key:'salaryType',
               type: 'select',
               templateOptions: {
                 label: 'Salary Type',
-                required: true,
                 options: [
-                  {label: 'Daily Wage', value: SalaryType.dailyWage},
-                  {label: 'Monthly', value: SalaryType.monthly},
-                  {label: 'Project Based',value: SalaryType.projectBased}
-
+                  {label: 'Daily Wage', value: "dailyWage"},
+                  {label: 'Monthly', value: "monthly"},
+                  {label: 'Project Based',value: 'projectBased'}
                 ],
+                required: true,
+
               },
               expressionProperties: {
                 // apply expressionProperty for disabled based on formState
@@ -159,7 +200,7 @@ export class AdminManageEmployeesComponent implements OnInit {
                 key: 'joiningDate',
                 className: 'col-sm-4',
                 templateOptions: {
-                  type: 'date',
+                  type: 'datetime-local',
                   label: 'Date of Joining:',
                   required: true
                 },
@@ -174,7 +215,7 @@ export class AdminManageEmployeesComponent implements OnInit {
                   key: 'leavingDate',
                   className: 'col-sm-4',
                   templateOptions: {
-                    type: 'date',
+                    type: 'datetime-local',
                     label: 'Date of Leaving:',
                   },
                   expressionProperties: {
@@ -204,10 +245,11 @@ export class AdminManageEmployeesComponent implements OnInit {
 
                     fieldGroup: [
                       {
-                        key: 'project',
+                        key: 'projID',
                         type: 'select',
                         templateOptions: {
                           label: 'Project',
+                         // placeholder: '',
                          options: this.projectService.getAllProjectsSelect(),
                           valueProp: 'id',
                           labelProp: 'name',
@@ -217,12 +259,14 @@ export class AdminManageEmployeesComponent implements OnInit {
                       expressionProperties: {
                         // apply expressionProperty for disabled based on formState
                         'templateOptions.disabled': 'formState.disabled',
+
+
                       },
                     },
                       {
                     //    className: 'col-6',
                         type: 'input',
-                        key: 'role',
+                        key: 'role1',
                         templateOptions: {
                           label: 'Role',
                           required : true
@@ -246,16 +290,35 @@ export class AdminManageEmployeesComponent implements OnInit {
     this.options.formState.disabled = !this.options.formState.disabled;
   }
   submit() {if (!this.options.formState.disabled){
-      console.log(this.model)
-      alert(JSON.stringify(this.model));}
-  }
+      console.log(this.model);
+     let staff : IStaffEditableInfo = this.toEditableConverter(this.model);
+
+      this.staffService.updateStaff(this.model.staffID, staff);
+
+
+
+  }}
 
   onBack(){
     this.router.navigate(["/admin"]);
   }
+toEditableConverter(model : IStaffInfo){
+  let staff : IStaffEditableInfo = new StaffEditableInfo;
+      staff.staffFname= model.staffFname;
+      staff.staffLname= model.staffLname;
+      staff.staffEmail = model.staffEmail;
+      staff.staffAddress = model.staffAddress;
+      staff.staffPhNo = model.staffPhNo;
+      staff.salaryAmt = model.salaryAmt;
+      staff.salaryType= model.salaryType;
+      staff.staffStatus = model.staffStatus;
+      staff.designation = model.designation;
+      staff.joiningDate = model.joiningDate;
+      staff.leavingDate = model.leavingDate;
+      staff.roles = model.roles;
+      return staff;
 
-
-
+}
 
 
   }

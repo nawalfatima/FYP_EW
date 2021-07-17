@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { IProject, IProjectPaged } from '../model/iProject';
+import { IProject, IProjectPaged, IShowProject } from '../model/iProject';
 
 
 @Injectable({
@@ -28,6 +28,9 @@ getAllProjectsSelect() : Observable <IKeyValue[]>{
 
   getProject(id: number) {
     return this.http.get<IProject>(this.baseUrl + '/Projects/id/'+id);
+  }
+  getShowProjectById(id: number) {
+    return this.http.get<IShowProject>(this.baseUrl + '/Projects/public/'+id);
   }
 
   getShowProject(pgNo : number, pgSize: number) {

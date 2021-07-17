@@ -1,3 +1,4 @@
+import { StaffListComponent } from './../staff/staff-list/staff-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -14,7 +15,11 @@ const routes: Routes = [
 { path: 'manage-clients', component: AdminManageClientsComponent },
 { path: 'manage-projects', component: AdminManageProjectsComponent },
 { path: 'manage-services', component: AdminManageServicesComponent },
-{ path: 'manage-employees', component: AdminManageEmployeesComponent },
+{ path: 'manage-employee', component: AdminManageEmployeesComponent },
+{ path: 'manage-employee/:id', component: AdminManageEmployeesComponent},
+
+{ path: 'all-employees', component: StaffListComponent },
+
 { path: 'manage-equipment', component: AdminManageEquipmentComponent }
 
 

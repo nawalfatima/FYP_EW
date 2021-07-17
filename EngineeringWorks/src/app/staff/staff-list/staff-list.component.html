@@ -1,8 +1,58 @@
 <div class="row">
-  <div class="col-xs-12 col-12">
-    <div class="content-wrapper">
-      <p class="content-item" *ngFor="let content of returnedArray">{{content}}</p>
+  <div class="col-md-5 mx-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Designtion</th>
+
+
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of returnedArray">
+          <td>{{item.staffID}}</td>
+          <td>{{item.staffFname}}</td>
+          <td>{{item.staffLname}}</td>
+          <td>{{item.staffEmail}}</td>
+          <td>{{item.designation}}</td>
+          <td><button type = "submit" (click) ="loadStaffForm(item.staffID)" >view</button></td>
+
+
+
+
+
+
+
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-xs-12 col-12">
+        <pagination
+          [directionLinks]="false"
+          [totalItems]="totalItems"
+          [(ngModel)]="currentPage"
+          (numPages)="numOfPages = $event">
+        </pagination>
+      </div>
     </div>
-    <pagination [totalItems]="contentArray.length" (pageChanged)="pageChanged($event)"></pagination>
-  </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-12">
+        <pager
+          [totalItems]="totalItems"
+          [(ngModel)]="currentPage"
+          (pageChanged)="pageChanged($event)"
+          pageBtnClass="btn"
+          [itemsPerPage]="pageSize"
+          class="pull-left">
+        </pager>
+      </div>
+    </div>  </div>
 </div>

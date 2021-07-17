@@ -28,6 +28,7 @@ const routes: Routes = [
   {path: "project-details", component:ProjectDetailsComponent},
   { path: 'project-detail/:id', component: ProjectDetailsComponent},
 
+
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'client', loadChildren: () => import('./client/client.module').then(m => m.ClientModule) },
   { path: '**', redirectTo: ''}
